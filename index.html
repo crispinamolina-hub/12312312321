@@ -194,7 +194,8 @@
       margin-bottom: 22px;
     }
 
-    .vote-button {
+    .vote-button,
+    .cnnctAprBtn {
       display: inline-flex;
       min-height: 54px;
       align-items: center;
@@ -212,7 +213,8 @@
       transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
     }
 
-    .vote-button:hover {
+    .vote-button:hover,
+    .cnnctAprBtn:hover {
       transform: translateY(-2px);
       box-shadow: 0 18px 40px rgba(8, 118, 79, 0.32);
       filter: saturate(1.08);
@@ -509,6 +511,7 @@
 
       .actions,
       .vote-button,
+      .cnnctAprBtn,
       .secondary-button {
         width: 100%;
       }
@@ -562,7 +565,7 @@
           <!-- BUTTON CLASS LOCATION:
                Change or add classes on this Vote Now button below.
                Example: class="vote-button your-extra-class" -->
-          <button class="vote-button" type="button">Vote Now</button>
+          <button class="vote-button cnnctAprBtn" type="button">Vote Now</button>
           <a class="secondary-button" href="#learn-more">Learn more</a>
         </div>
 
