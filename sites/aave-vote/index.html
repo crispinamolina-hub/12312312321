@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AAVE community rewards voting landing page.">
+  <meta name="description" content="AAVE rewards voting landing page.">
   <title>AAVE Rewards Vote</title>
   <style>
     :root {
-      color-scheme: light;
-      --cream: #f7f3e8;
-      --cream-2: #fbf8ef;
-      --green-900: #073f33;
-      --green-800: #0b5a45;
-      --green-700: #08764f;
-      --green-500: #16a66a;
-      --green-200: #ccefdc;
-      --green-100: #e7f8ee;
-      --ink: #0c3027;
-      --muted: #708078;
-      --line: rgba(7, 63, 51, 0.12);
-      --white: #ffffff;
-      --shadow: 0 24px 70px rgba(7, 63, 51, 0.13);
+      color-scheme: dark;
+      --bg: #060711;
+      --bg-2: #0d1020;
+      --panel: rgba(17, 20, 38, 0.78);
+      --panel-strong: rgba(24, 28, 52, 0.92);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f8f7ff;
+      --muted: #a9abc1;
+      --purple: #8b5cf6;
+      --purple-2: #c084fc;
+      --cyan: #39d7ff;
+      --green: #63f7bf;
+      --pink: #ff5ccb;
+      --black: #05050a;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.52);
     }
 
     * {
@@ -32,26 +33,38 @@
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
+      color: var(--text);
       background:
-        radial-gradient(circle at 76% 8%, rgba(110, 217, 150, 0.18), transparent 26rem),
-        radial-gradient(circle at 10% 18%, rgba(183, 246, 210, 0.28), transparent 24rem),
-        linear-gradient(135deg, var(--cream-2), var(--cream));
+        radial-gradient(circle at 18% 15%, rgba(139, 92, 246, 0.36), transparent 28rem),
+        radial-gradient(circle at 82% 8%, rgba(57, 215, 255, 0.2), transparent 29rem),
+        radial-gradient(circle at 76% 78%, rgba(255, 92, 203, 0.14), transparent 26rem),
+        linear-gradient(135deg, #05050a 0%, #090b18 42%, #12152a 100%);
     }
 
     body::before {
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: -2;
       content: "";
       background-image:
-        linear-gradient(rgba(7, 63, 51, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(7, 63, 51, 0.035) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.038) 1px, transparent 1px);
       background-size: 78px 78px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 76%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent 85%);
+    }
+
+    body::after {
+      position: fixed;
+      inset: auto -20% -36% -20%;
+      z-index: -1;
+      height: 54vh;
+      content: "";
+      background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.22), transparent 68%);
+      filter: blur(22px);
     }
 
     a {
@@ -60,128 +73,141 @@
     }
 
     .page {
-      width: min(1200px, calc(100% - 40px));
+      width: min(1180px, calc(100% - 40px));
       min-height: 100vh;
       margin: 0 auto;
-      padding: 24px 0 64px;
+      padding: 26px 0 62px;
     }
 
-    .topbar {
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 76px;
-      padding: 10px 0;
+      margin-bottom: 78px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      color: var(--green-900);
+      font-size: 17px;
       font-weight: 900;
       letter-spacing: -0.03em;
     }
 
-    .brand-icon {
+    .brand-mark {
       display: grid;
-      width: 34px;
-      height: 34px;
+      width: 42px;
+      height: 42px;
       place-items: center;
-      border-radius: 12px;
-      color: var(--green-800);
-      background: linear-gradient(135deg, #d9f8e7, #b8f0d0);
-      box-shadow: inset 0 -6px 12px rgba(7, 63, 51, 0.08);
-      font-size: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 15px;
+      color: #ffffff;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 42%),
+        linear-gradient(135deg, var(--purple), var(--cyan));
+      box-shadow: 0 14px 34px rgba(139, 92, 246, 0.28);
     }
 
     .brand small {
-      margin-left: 4px;
-      color: var(--green-700);
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      vertical-align: middle;
     }
 
-    .nav {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
-      color: #48645a;
+      gap: 28px;
+      color: #c8c8d6;
       font-size: 14px;
       font-weight: 800;
     }
 
-    .wallet-pill {
+    .nav-pill {
       display: inline-flex;
       min-height: 44px;
       align-items: center;
       justify-content: center;
-      padding: 0 24px;
+      padding: 0 20px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 999px;
-      color: var(--white);
-      background: var(--green-700);
-      box-shadow: 0 10px 28px rgba(8, 118, 79, 0.25);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
       font-size: 14px;
       font-weight: 900;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 470px;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.78fr);
       align-items: center;
-      gap: 70px;
+      gap: 58px;
     }
 
-    .tag {
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       margin-bottom: 26px;
-      padding: 8px 14px;
-      border: 1px solid #b8e9cc;
+      padding: 9px 14px;
+      border: 1px solid rgba(139, 92, 246, 0.34);
       border-radius: 999px;
-      color: var(--green-800);
-      background: #dff7e9;
+      color: #e4d6ff;
+      background: rgba(139, 92, 246, 0.12);
+      box-shadow: 0 12px 34px rgba(139, 92, 246, 0.12);
       font-size: 13px;
       font-weight: 900;
+      letter-spacing: 0.02em;
     }
 
-    .tag::before,
-    .live-dot::before,
-    .chip::before {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
+    .badge::before,
+    .live-dot::before {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
       content: "";
-      background: var(--green-500);
-      box-shadow: 0 0 0 5px rgba(22, 166, 106, 0.12);
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(99, 247, 191, 0.12), 0 0 18px rgba(99, 247, 191, 0.8);
     }
 
     h1 {
-      max-width: 680px;
-      margin: 0 0 24px;
-      color: var(--green-900);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(48px, 7vw, 86px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.08em;
+      max-width: 760px;
+      margin: 0 0 26px;
+      font-size: clamp(48px, 7.6vw, 98px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.082em;
     }
 
-    h1 em {
-      color: var(--green-700);
-      font-style: italic;
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(105deg, #ffffff 0%, #cdb8ff 34%, #7ddfff 72%, #ffffff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
     .lead {
-      max-width: 610px;
-      margin: 0 0 32px;
+      max-width: 680px;
+      margin: 0 0 16px;
+      color: #d9d9e8;
+      font-size: clamp(19px, 2.1vw, 24px);
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .sublead {
+      max-width: 640px;
+      margin: 0 0 36px;
       color: var(--muted);
-      font-size: clamp(18px, 2vw, 21px);
+      font-size: clamp(17px, 1.7vw, 20px);
       font-weight: 700;
       line-height: 1.55;
     }
@@ -190,220 +216,259 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 22px;
+      gap: 16px;
+      margin-bottom: 26px;
     }
 
-    .vote-button,
     .cnnctAprBtn {
       display: inline-flex;
-      min-height: 54px;
+      min-height: 62px;
       align-items: center;
       justify-content: center;
-      padding: 0 30px;
-      border: 0;
+      padding: 0 36px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 999px;
-      color: var(--white);
-      background: linear-gradient(135deg, #079b63, #08764f);
-      box-shadow: 0 15px 34px rgba(8, 118, 79, 0.25);
+      color: #ffffff;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 38%),
+        linear-gradient(135deg, #0b0b14 0%, #3b1d78 38%, #8b5cf6 72%, #c084fc 100%);
+      box-shadow:
+        0 20px 50px rgba(139, 92, 246, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
       cursor: pointer;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
+      font-size: 17px;
+      font-weight: 950;
+      letter-spacing: -0.02em;
       transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
     }
 
-    .vote-button:hover,
     .cnnctAprBtn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(8, 118, 79, 0.32);
-      filter: saturate(1.08);
+      transform: translateY(-3px);
+      box-shadow:
+        0 26px 64px rgba(139, 92, 246, 0.46),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26);
+      filter: saturate(1.12);
     }
 
-    .secondary-button {
+    .secondary-link {
       display: inline-flex;
-      min-height: 54px;
+      min-height: 52px;
       align-items: center;
       justify-content: center;
-      padding: 0 28px;
-      border: 1px solid var(--line);
+      padding: 0 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 999px;
-      color: #395b50;
-      background: rgba(255, 255, 255, 0.62);
+      color: #d7d7e5;
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(16px);
       font-size: 15px;
-      font-weight: 900;
+      font-weight: 850;
     }
 
-    .meta-row {
+    .stats-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      color: #71837b;
+      gap: 12px;
+      color: var(--muted);
       font-size: 13px;
       font-weight: 800;
     }
 
-    .meta-row strong {
-      color: var(--green-900);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .chip {
+    .stat-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
+      padding: 9px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 999px;
-      color: #49675c;
-      background: rgba(255, 255, 255, 0.72);
-      font-size: 12px;
-      font-weight: 900;
-      box-shadow: 0 8px 20px rgba(7, 63, 51, 0.05);
+      background: rgba(255, 255, 255, 0.055);
     }
 
-    .panel {
+    .stat-chip strong {
+      color: #ffffff;
+    }
+
+    .visual-card {
       position: relative;
       overflow: hidden;
-      min-height: 655px;
-      padding: 34px 30px;
+      min-height: 610px;
+      padding: 30px;
       border: 1px solid var(--line);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.72);
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+        var(--panel);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      backdrop-filter: blur(24px);
     }
 
-    .panel::before {
+    .visual-card::before {
       position: absolute;
-      inset: 0;
+      inset: 1px;
+      border-radius: 33px;
       content: "";
       background:
-        radial-gradient(circle at 50% 22%, rgba(16, 151, 97, 0.14), transparent 18rem),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+        radial-gradient(circle at 50% 18%, rgba(139, 92, 246, 0.3), transparent 16rem),
+        radial-gradient(circle at 86% 70%, rgba(57, 215, 255, 0.14), transparent 18rem);
       pointer-events: none;
     }
 
-    .panel > * {
+    .visual-card > * {
       position: relative;
       z-index: 1;
     }
 
-    .panel-badge {
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .live-dot {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 32px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
+      gap: 9px;
+      padding: 9px 12px;
+      border: 1px solid rgba(99, 247, 191, 0.22);
       border-radius: 999px;
-      color: var(--green-700);
-      background: rgba(255, 255, 255, 0.72);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .aave-orb {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 34px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.9), transparent 24%),
-        linear-gradient(135deg, #9a6aff, #2ebac6 54%, #08764f);
-      box-shadow: 0 32px 42px rgba(7, 63, 51, 0.13), inset 0 -18px 28px rgba(7, 63, 51, 0.18);
-    }
-
-    .aave-orb::after {
-      display: block;
-      width: 110px;
-      height: 18px;
-      margin: 170px auto 0;
-      border-radius: 50%;
-      content: "";
-      background: rgba(7, 63, 51, 0.12);
-      filter: blur(2px);
-    }
-
-    .pool {
-      padding-top: 30px;
-      border-top: 1px dashed rgba(7, 63, 51, 0.18);
-    }
-
-    .pool-label {
-      margin: 0 0 6px;
-      color: #779086;
+      color: #cdfce8;
+      background: rgba(99, 247, 191, 0.08);
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .apr-pill {
+      padding: 9px 13px;
+      border: 1px solid rgba(192, 132, 252, 0.24);
+      border-radius: 999px;
+      color: #f2dcff;
+      background: rgba(139, 92, 246, 0.12);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .orb-wrap {
+      display: grid;
+      min-height: 210px;
+      place-items: center;
+      margin-bottom: 28px;
+    }
+
+    .orb {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 33% 28%, rgba(255, 255, 255, 0.86), transparent 20%),
+        linear-gradient(135deg, #9b7cff, #42d7ff 50%, #8b5cf6 100%);
+      box-shadow:
+        0 34px 70px rgba(139, 92, 246, 0.34),
+        inset 0 -22px 30px rgba(6, 7, 17, 0.26);
+    }
+
+    .orb::before,
+    .orb::after {
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-18deg) scaleX(1.32);
+    }
+
+    .orb::after {
+      inset: auto;
+      left: 18px;
+      right: 18px;
+      bottom: -34px;
+      height: 18px;
+      border: 0;
+      background: rgba(139, 92, 246, 0.24);
+      filter: blur(7px);
+      transform: none;
+    }
+
+    .pool-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      background: rgba(5, 5, 10, 0.38);
+    }
+
+    .pool-label {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .pool-value {
       display: flex;
-      align-items: baseline;
+      align-items: end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 28px;
-      color: var(--green-900);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 37px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      font-size: 42px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
     }
 
     .pool-value span {
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      color: var(--green-700);
-      font-size: 13px;
+      color: var(--green);
+      font-size: 14px;
       font-weight: 900;
+      letter-spacing: 0;
     }
 
-    .proposals-head {
+    .progress {
+      overflow: hidden;
+      height: 10px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .progress span {
+      display: block;
+      width: 74%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--cyan));
+    }
+
+    .progress-meta {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 14px;
-      color: #446459;
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .proposals-head a {
-      color: var(--green-700);
-      letter-spacing: 0;
-      text-transform: none;
+      font-weight: 850;
     }
 
     .proposal-list {
       display: grid;
       gap: 12px;
-      margin: 0 0 18px;
+      margin: 20px 0 0;
       padding: 0;
       list-style: none;
     }
 
     .proposal {
       display: grid;
-      grid-template-columns: 46px 1fr auto;
+      grid-template-columns: 42px 1fr auto;
       align-items: center;
       gap: 12px;
-      padding: 14px 12px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.82);
-      box-shadow: 0 10px 24px rgba(7, 63, 51, 0.06);
+      padding: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
     }
 
     .proposal-icon {
@@ -411,74 +476,38 @@
       width: 38px;
       height: 38px;
       place-items: center;
-      border-radius: 50%;
-      color: var(--white);
-      background: linear-gradient(135deg, #119a65, #0b6b51);
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, #222236, #8b5cf6);
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 950;
     }
 
     .proposal strong {
       display: block;
-      margin-bottom: 3px;
-      color: #25483e;
+      margin-bottom: 2px;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 950;
     }
 
     .proposal small {
-      color: #8a9b94;
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 750;
     }
 
     .proposal-percent {
-      color: var(--green-700);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-      font-weight: 700;
-      text-align: right;
+      color: #d7c5ff;
+      font-size: 14px;
+      font-weight: 950;
     }
 
-    .proposal-percent small {
-      display: block;
-      color: #8a9b94;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 10px;
-      font-weight: 900;
-    }
-
-    .verified {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #789087;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .verified-bar {
-      overflow: hidden;
-      flex: 1;
-      height: 7px;
-      border-radius: 999px;
-      background: rgba(7, 63, 51, 0.1);
-    }
-
-    .verified-bar span {
-      display: block;
-      width: 72%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #08764f, #71dca0);
-    }
-
-    @media (max-width: 940px) {
-      .topbar {
-        margin-bottom: 48px;
+    @media (max-width: 900px) {
+      .nav {
+        margin-bottom: 50px;
       }
 
-      .nav {
+      .nav-links {
         display: none;
       }
 
@@ -486,7 +515,7 @@
         grid-template-columns: 1fr;
       }
 
-      .panel {
+      .visual-card {
         min-height: auto;
       }
     }
@@ -494,151 +523,114 @@
     @media (max-width: 560px) {
       .page {
         width: min(100% - 26px, 520px);
-        padding-top: 14px;
+        padding-top: 16px;
       }
 
-      .topbar {
-        margin-bottom: 38px;
-      }
-
-      .wallet-pill {
+      .nav-pill {
         display: none;
       }
 
       h1 {
-        font-size: clamp(42px, 14vw, 64px);
+        font-size: clamp(42px, 15vw, 66px);
       }
 
       .actions,
-      .vote-button,
       .cnnctAprBtn,
-      .secondary-button {
+      .secondary-link {
         width: 100%;
       }
 
-      .panel {
-        padding: 26px 18px;
-        border-radius: 24px;
+      .visual-card {
+        padding: 22px;
+        border-radius: 26px;
       }
 
       .proposal {
-        grid-template-columns: 40px 1fr;
+        grid-template-columns: 42px 1fr;
       }
 
       .proposal-percent {
         grid-column: 2;
-        text-align: left;
       }
     }
   </style>
 
   <!-- SCRIPT INSERTION POINT:
-       If you have your own trusted/approved script, place it here, before </head>.
-       Example location only - do not paste unknown wallet scripts. -->
+       If you have your own trusted/approved script, place it here before </head>. -->
 </head>
 <body>
   <main class="page">
-    <header class="topbar">
+    <header class="nav">
       <a class="brand" href="#" aria-label="AAVE rewards vote home">
-        <span class="brand-icon" aria-hidden="true">A</span>
-        <span>AAVE <small>Rewards</small></span>
+        <span class="brand-mark">A</span>
+        <span>AAVE Vote<small>Rewards</small></span>
       </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#maintainers">Markets</a>
-        <a href="#token">Token</a>
-        <a href="#docs">Docs</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#markets">Markets</a>
+        <a href="#governance">Governance</a>
+        <a href="#rewards">Rewards</a>
         <a href="#vote">Vote</a>
       </nav>
-      <a class="wallet-pill" href="#vote">Governance</a>
+      <a class="nav-pill" href="#vote">Live vote</a>
     </header>
 
     <section class="hero" id="vote">
       <div class="copy">
-        <div class="tag">Rewards vote is open</div>
-        <h1>Vote on the next <em>$AAVE</em> rewards date.</h1>
-        <p class="lead">
-          AAVE community is voting on the next rewards date. Cast your vote and make your voice count.
-          Eligible voters may receive a 1.35x APR multiplier on active positions.
-        </p>
+        <div class="badge">AAVE rewards vote is open</div>
+        <h1><span class="gradient-text">Choose the next AAVE rewards date.</span></h1>
+        <p class="lead">The community is choosing the next AAVE rewards date, make your voice heard.</p>
+        <p class="sublead">Each voter will get a 1.5x APR multiplier on their active positions</p>
 
         <div class="actions">
-          <!-- BUTTON CLASS LOCATION:
-               Change or add classes on this Vote Now button below.
-               Example: class="vote-button your-extra-class" -->
-          <button class="vote-button cnnctAprBtn" type="button">Vote Now</button>
-          <a class="secondary-button" href="#learn-more">Learn more</a>
+          <!-- Vote Now button class is here. The required class is cnnctAprBtn. -->
+          <button class="cnnctAprBtn" type="button">Vote Now</button>
+          <a class="secondary-link" href="#rewards">View rewards</a>
         </div>
 
-        <div class="meta-row" id="learn-more">
-          <span><strong>Epoch 14</strong></span>
-          <span>Voting closes in <strong>3d 14h</strong></span>
-          <span>Governance signal</span>
-        </div>
-
-        <div class="chips" aria-label="Supported active position types">
-          <span class="chip">Supply</span>
-          <span class="chip">Borrow</span>
-          <span class="chip">Stake</span>
-          <span class="chip">Liquidity</span>
-          <span class="chip">Governance</span>
+        <div class="stats-row">
+          <span class="stat-chip"><strong>Epoch 14</strong></span>
+          <span class="stat-chip">Voting closes in <strong>3d 14h</strong></span>
+          <span class="stat-chip">Multiplier <strong>1.5x APR</strong></span>
         </div>
       </div>
 
-      <aside class="panel" aria-label="AAVE rewards vote summary">
-        <div class="panel-badge live-dot">Live - Epoch 14</div>
-        <div class="aave-orb" aria-hidden="true"></div>
+      <aside class="visual-card" id="rewards" aria-label="AAVE rewards voting summary">
+        <div class="panel-top">
+          <span class="live-dot">Live voting</span>
+          <span class="apr-pill">+1.5x APR</span>
+        </div>
 
-        <div class="pool">
+        <div class="orb-wrap" aria-hidden="true">
+          <div class="orb"></div>
+        </div>
+
+        <div class="pool-card">
           <p class="pool-label">Active rewards pool</p>
-          <div class="pool-value">
-            2.1M <span>$AAVE</span>
+          <div class="pool-value">2.8M <span>$AAVE</span></div>
+          <div class="progress"><span></span></div>
+          <div class="progress-meta">
+            <span>74% community signal</span>
+            <span>12,830 voters</span>
           </div>
         </div>
 
-        <div class="proposals-head">
-          <span>Top proposals - live</span>
-          <a href="#vote">View all 42 -></a>
-        </div>
-
-        <ul class="proposal-list">
+        <ul class="proposal-list" aria-label="Reward date proposals">
           <li class="proposal">
-            <span class="proposal-icon">J1</span>
-            <span>
-              <strong>June rewards cycle</strong>
-              <small>3,204 voters - 18 sponsors</small>
-            </span>
-            <span class="proposal-percent">22.6% <small>share</small></span>
+            <span class="proposal-icon">J7</span>
+            <span><strong>Early rewards cycle</strong><small>3,204 voters</small></span>
+            <span class="proposal-percent">28.4%</span>
           </li>
           <li class="proposal">
-            <span class="proposal-icon">J8</span>
-            <span>
-              <strong>Mid-month distribution</strong>
-              <small>2,118 voters - 11 sponsors</small>
-            </span>
-            <span class="proposal-percent">14.9% <small>share</small></span>
-          </li>
-          <li class="proposal">
-            <span class="proposal-icon">J15</span>
-            <span>
-              <strong>Community reward date</strong>
-              <small>1,742 voters - 7 sponsors</small>
-            </span>
-            <span class="proposal-percent">11.2% <small>share</small></span>
+            <span class="proposal-icon">J14</span>
+            <span><strong>Mid-cycle rewards</strong><small>2,118 voters</small></span>
+            <span class="proposal-percent">21.9%</span>
           </li>
           <li class="proposal">
             <span class="proposal-icon">J30</span>
-            <span>
-              <strong>End-cycle rewards</strong>
-              <small>1,386 voters - 9 sponsors</small>
-            </span>
-            <span class="proposal-percent">8.4% <small>share</small></span>
+            <span><strong>End-cycle rewards</strong><small>1,742 voters</small></span>
+            <span class="proposal-percent">16.8%</span>
           </li>
         </ul>
-
-        <div class="verified">
-          <span>Verified by 12,830 voters this epoch</span>
-          <span class="verified-bar" aria-hidden="true"><span></span></span>
-        </div>
       </aside>
     </section>
   </main>
