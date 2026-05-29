@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A community voting page for the upcoming $AAVE reward date."
+    >
+    <title>$AAVE Reward Vote</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./assets/styles.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#" aria-label="$AAVE voting home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>AAVE Vote</span>
+        </a>
+        <a class="nav-link" href="#vote">Governance</a>
+      </nav>
+
+      <section class="hero" id="vote">
+        <div class="hero-copy">
+          <p class="eyebrow">Community governance event</p>
+          <h1>All users are invited to vote on the upcoming $AAVE reward date!</h1>
+          <p class="hero-text">
+            Join the governance signal and help shape the next reward milestone
+            for the $AAVE community.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#vote-panel">Vote Now</a>
+            <span class="status-pill">Voting window open</span>
+          </div>
+        </div>
+
+        <aside class="vote-card" id="vote-panel" aria-label="Reward vote summary">
+          <div class="orb orb-one" aria-hidden="true"></div>
+          <div class="orb orb-two" aria-hidden="true"></div>
+          <p class="card-label">Reward date proposal</p>
+          <h2>Choose the next community reward date</h2>
+          <div class="progress-wrap" aria-label="Voting progress">
+            <div class="progress-bar">
+              <span></span>
+            </div>
+            <div class="progress-meta">
+              <span>72% participation signal</span>
+              <span>Live</span>
+            </div>
+          </div>
+          <div class="metrics">
+            <div>
+              <strong>48.2K</strong>
+              <span>Participants</span>
+            </div>
+            <div>
+              <strong>$AAVE</strong>
+              <span>Reward asset</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
