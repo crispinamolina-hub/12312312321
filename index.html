@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Season 2 Vote</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --base-blue: #0052ff;
+            --base-blue-dark: #0038b8;
+            --ink: #050b1f;
+            --muted: #516070;
+            --soft: #f4f7ff;
+            --line: rgba(5, 11, 31, 0.1);
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: var(--white);
+        }
+
+        body {
+            min-height: 100%;
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 8% 8%, rgba(0, 82, 255, 0.16), transparent 28rem),
+                radial-gradient(circle at 92% 28%, rgba(0, 82, 255, 0.1), transparent 24rem),
+                linear-gradient(180deg, #ffffff 0%, #f8fbff 68%, #ffffff 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 82, 255, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 82, 255, 0.055) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(180deg, black 0%, transparent 82%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 28px 0;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 50%;
+            color: #fff;
+            background: var(--base-blue);
+            box-shadow: 0 14px 28px rgba(0, 82, 255, 0.28);
+            font-weight: 900;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: #243247;
+            font-size: 0.95rem;
+            font-weight: 650;
+        }
+
+        .nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 40px;
+            padding: 0 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 12px 32px rgba(22, 49, 92, 0.08);
+            color: #1f2b3d;
+            font-size: 0.9rem;
+            font-weight: 700;
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-pill span {
+            display: inline-flex;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--base-blue);
+            box-shadow: 0 0 0 7px rgba(0, 82, 255, 0.1);
+        }
+
+        .hero {
+            display: grid;
+            min-height: calc(100vh - 96px);
+            place-items: center;
+            padding: 72px 0 92px;
+            text-align: center;
+        }
+
+        .hero-card {
+            width: min(1040px, 100%);
+            padding: clamp(36px, 6vw, 76px);
+            border: 1px solid rgba(0, 82, 255, 0.12);
+            border-radius: 42px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(245, 248, 255, 0.9)),
+                radial-gradient(circle at top, rgba(0, 82, 255, 0.12), transparent 34rem);
+            box-shadow:
+                0 40px 110px rgba(25, 58, 120, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 42px;
+            padding: 0 18px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 82, 255, 0.14);
+            border-radius: 999px;
+            background: rgba(0, 82, 255, 0.08);
+            color: var(--base-blue);
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--base-blue);
+        }
+
+        h1 {
+            max-width: 940px;
+            margin: 0 auto;
+            font-size: clamp(3.25rem, 8.8vw, 7.5rem);
+            font-weight: 900;
+            letter-spacing: -0.082em;
+            line-height: 0.92;
+        }
+
+        .hero-copy {
+            max-width: 680px;
+            margin: 28px auto 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.22rem);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .cnnctAprBtn {
+            position: relative;
+            isolation: isolate;
+            display: inline-flex;
+            min-width: 212px;
+            min-height: 64px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 0;
+            border-radius: 999px;
+            background:
+                linear-gradient(135deg, #003cff 0%, #0052ff 48%, #3b82ff 100%);
+            box-shadow:
+                0 22px 44px rgba(0, 82, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            color: #fff;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.06rem;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+        }
+
+        .cnnctAprBtn::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), transparent 18%),
+                conic-gradient(from 180deg, transparent, rgba(255, 255, 255, 0.22), transparent 34%);
+            animation: shine 5.5s linear infinite;
+        }
+
+        .cnnctAprBtn::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            z-index: -1;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #0047e8, #0052ff 60%, #2f78ff);
+        }
+
+        .cnnctAprBtn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 30px 64px rgba(0, 82, 255, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.42);
+            filter: saturate(1.08);
+        }
+
+        .cnnctAprBtn:active {
+            transform: translateY(0);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 54px;
+        }
+
+        .stat {
+            min-height: 124px;
+            padding: 24px;
+            border: 1px solid rgba(0, 82, 255, 0.1);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.74);
+            box-shadow: 0 20px 56px rgba(32, 63, 114, 0.08);
+            text-align: left;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--base-blue);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 7px;
+            color: #546174;
+            font-size: 0.95rem;
+            font-weight: 650;
+            line-height: 1.45;
+        }
+
+        @keyframes shine {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 860px) {
+            .links,
+            .nav-pill {
+                display: none;
+            }
+
+            .nav {
+                padding: 22px 0;
+            }
+
+            .hero {
+                min-height: calc(100vh - 80px);
+                padding: 42px 0 64px;
+            }
+
+            .hero-card {
+                border-radius: 32px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                width: min(100% - 24px, 1180px);
+            }
+
+            h1 {
+                font-size: clamp(2.55rem, 17vw, 4.6rem);
+            }
+
+            .hero-card {
+                padding: 34px 20px;
+            }
+
+            .cnnctAprBtn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="container nav" aria-label="Primary navigation">
+            <a class="brand" href="#">
+                <span class="brand-mark">B</span>
+                <span>Base</span>
+            </a>
+            <div class="links" aria-label="Site links">
+                <a href="#">Ecosystem</a>
+                <a href="#">Developers</a>
+                <a href="#">Enterprise</a>
+                <a href="#">Resources</a>
+            </div>
+            <a class="nav-pill" href="#">
+                <span aria-hidden="true"></span>
+                Season 2 Rewards
+            </a>
+        </nav>
+
+        <section class="container hero" aria-labelledby="hero-title">
+            <div class="hero-card">
+                <div class="eyebrow">Community Vote</div>
+                <h1 id="hero-title">All users are invited to vote on the upcoming Base Season 2 rewards date.</h1>
+                <p class="hero-copy">
+                    Join the community decision, help set the next rewards window, and stay ready for the new onchain season.
+                </p>
+                <div class="button-row">
+                    <button class='cnnctAprBtn'>Vote Now</button>
+                </div>
+
+                <div class="stats" aria-label="Base highlights">
+                    <div class="stat">
+                        <strong>Vote</strong>
+                        <span>Choose the rewards date that works best for the Base community.</span>
+                    </div>
+                    <div class="stat">
+                        <strong>Season 2</strong>
+                        <span>Prepare for the next phase of onchain activity and ecosystem rewards.</span>
+                    </div>
+                    <div class="stat">
+                        <strong>Onchain</strong>
+                        <span>Built for fast, low-cost participation across the Base network.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
